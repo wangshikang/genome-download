@@ -1,0 +1,12 @@
+for i in $(seq 1 22) X Y M;
+do echo $i;
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr${i}.fa.gz;
+## 这里也可以用NCBI的：ftp://ftp.ncbi.nih.gov/genomes/M_musculus/ARCHIVE/MGSCv3_Release3/Assembled_Chromosomes/chr前缀
+done
+
+gunzip *.gz
+
+for i in $(seq 1 22) X Y M;
+do cat chr${i}.fa >> hg19.fasta;
+done
+rm -fr chr*.fasta
